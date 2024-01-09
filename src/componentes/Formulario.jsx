@@ -1,7 +1,7 @@
 import { useState , useEffect} from "react";
 import Error from "./Error"
 
-function Formulario({setPacientes, pacientes}){
+function Formulario({setPacientes, pacientes, paciente, setPaciente}){
 const [nombre, setNombre] = useState("");
 const [propietario, setPropietario] = useState("");
 const [email, setEmail] = useState("");
@@ -9,6 +9,27 @@ const [fecha, setFecha] = useState("");
 const [sintomas, setSintomas] = useState("");
 
 const [error, setError] = useState(false)
+
+//ejecutate cuando paciente se modifique
+/**basicamente =>
+ * la ejecucion de este useEffect esta diciendo
+ * toca mi setPaciente en el onClick de mi boton de edicion
+ * va a la app ve donde estoy pasando el componente
+ * regresa a formulario verifica si paciente no esta vacio
+ * y ejecuta la condicion 
+ */
+
+useEffect(() => {
+    if(Object.keys(paciente).length > 0){
+        setNombre(paciente.nombre);
+        setPropietario(paciente.propietario);
+        setEmail(paciente.email);
+        setFecha(paciente.fecha);
+        setSintomas(paciente.sintomas);
+    }
+}, [paciente])
+
+console.log(paciente)
 
 const generarId = () => {
     const random = Math.random().toString(36).substr(2);
@@ -34,7 +55,39 @@ const handleSubmit = (e) => {
         nombre, propietario, email, fecha, sintomas
     }
 
-    setPacientes([...pacientes, objetoPaciente]);
+    if(paciente.id){
+        //editando el registro
+        //si no hay una nueva edicion dejo el
+        //registro como estaba antes
+
+        objetoPaciente.id = paciente.id
+        console.log(objetoPaciente)
+        console.log(paciente)
+/**itera sobre el objeto cuando identifica los dos objetos
+ * cuando identifica los pacientes del formulario
+ * va a iterar identificar el id 
+ * entonces nos va a regresar el objeto nuevo
+ * dentro del state por eso tambien le paso el estado
+ * para que se actualize 
+ * identifica el id del paciente que estamos editando 
+ * y ahi lo actualiza 
+ * crea la variable temporal llamada pacienteState
+ * cuando identifica que ya fue creado entonces
+ * retorna ese objeto nuevo si no retorna el del return
+ */
+
+
+
+    setPacientes(pacienteActualizado);
+    //entonces lo estoy adjudicando a un objeto
+    setPaciente({})
+    }else{
+        //nuevo registro
+        console.log("nuevo registro")
+        objetoPaciente.id = generarId();
+        setPacientes([...pacientes, objetoPaciente]);
+    }
+
 
 
     //Reiniciar el formulario
@@ -127,7 +180,7 @@ const handleSubmit = (e) => {
                     <input type="submit"
                     className="bg-indigo-600 font-bold
                     uppercase text-white w-full p-3 hover:bg-indigo-700 cursor-pointer transition-colors"
-                    value="Agregar Paciente"
+                    value={paciente.id ? "Editar Paciente" : "Agregar Paciente"}
                     /> 
             </form>
         </div>

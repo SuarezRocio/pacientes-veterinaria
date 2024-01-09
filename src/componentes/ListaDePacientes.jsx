@@ -1,9 +1,17 @@
 import Paciente from './Paciente';
 
-function ListDePacientes({pacientes}){
+function ListDePacientes({pacientes, paciente}){
     
-    //console.log(pacientes && pacientes.length)
+  //console.log(pacientes && pacientes.length)
     
+    
+  //ejecutate cuando paciente se modifique
+   /* useEffect(() => {
+      if(pacientes.length > 0){
+          console.log("Nuevo Paciente");
+      }
+    }, [paciente])*/
+
     return(
         <div className="md:w-1/2 lg:w-2/5 md:h-screen overflow-y-scroll">
           
@@ -17,10 +25,19 @@ function ListDePacientes({pacientes}){
             return <Paciente
             paciente={paciente}
             key={paciente.id}
+            setPaciente={setPaciente}
+            eliminarPaciente={eliminarPaciente}
             /> 
             })}
             </>
-          ) : "No hay Pacientes"}
+          ) : (
+            <>
+            <h2 className="font-black text-3xl text-center">No hay pacientes</h2>
+            <p className="text-cl mt-5 mb-10 text-center">Comienza agregando pacientes {""}
+            <span className="text-indigo-600 font-bold">y apreceran en este lugar</span>
+            </p>
+            </>
+          )}
           
             
         </div>
