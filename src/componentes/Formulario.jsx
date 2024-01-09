@@ -33,10 +33,11 @@ console.log(paciente)
 
 const generarId = () => {
     const random = Math.random().toString(36).substr(2);
-    const fecha = Date.now().toString(36)
+    const fecha = Date.now().toString(36);
 
     return random + fecha;
 }
+
 
 
 
@@ -76,9 +77,8 @@ const handleSubmit = (e) => {
  * retorna ese objeto nuevo si no retorna el del return
  */
 
-
-
-    setPacientes(pacienteActualizado);
+    const pacientesActualizados = pacientes.map( pacienteState => pacienteState.id === paciente.id ? objetoPaciente : pacienteState )
+    setPacientes( pacientesActualizados);
     //entonces lo estoy adjudicando a un objeto
     setPaciente({})
     }else{
@@ -96,7 +96,6 @@ const handleSubmit = (e) => {
     setEmail("")
     setFecha("")
     setSintomas("")
-    id: generarId();
 }
     
     return (

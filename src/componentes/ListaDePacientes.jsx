@@ -1,6 +1,6 @@
 import Paciente from './Paciente';
 
-function ListDePacientes({pacientes, paciente}){
+function ListDePacientes({pacientes, setPaciente, eliminarPaciente}){
     
   //console.log(pacientes && pacientes.length)
     
@@ -23,8 +23,8 @@ function ListDePacientes({pacientes, paciente}){
             </p>
             {pacientes.map((paciente) => {               
             return <Paciente
-            paciente={paciente}
             key={paciente.id}
+            paciente={paciente}
             setPaciente={setPaciente}
             eliminarPaciente={eliminarPaciente}
             /> 

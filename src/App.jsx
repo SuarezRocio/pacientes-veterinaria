@@ -6,7 +6,7 @@ import ListaDePacientes from './componentes/ListaDePacientes'
 function App() {
 
 const [pacientes, setPacientes] = useState([]);
-const [paciente, setPaciente] = useState([]);
+const [paciente, setPaciente] = useState({});
 
 /**
  * en mi primer useEffect verifica si ese item
@@ -16,9 +16,8 @@ const [paciente, setPaciente] = useState([]);
 
 useEffect(() => {
 const obtenerLS = () => {
-  const pacientesLS = localStorage.getItem("pacientes");
-
-  console.log(pacientesLS);
+  const pacientesLS = JSON.parse(localStorage.getItem("pacientes")) ?? [];
+  setPacientes(pacientesLS);
 }
   //console.log(3);
   obtenerLS();
@@ -35,11 +34,9 @@ const eliminarPaciente = id => {
 //voy a traer en mi nuevo objeto de pacientesactualizados
 //todos los pacientes que contengan el mismo identificador
 //lo selecciono y es eliminado
-const pacientesActualizados = pacientes.filter( paciente => {
-  paciente.id !== id
-})
-
-setPacientes(pacientesActualizados);
+const pacientesActualizados = pacientes.filter( paciente => 
+  paciente.id !== id);
+  setPacientes(pacientesActualizados);
 }
 
 
