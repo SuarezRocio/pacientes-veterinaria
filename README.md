@@ -12,6 +12,6 @@ Dentro de formulario creo mi funcion generarId es una función que genera un ID 
 La función handleSubmit se ejecuta cuando se envía el formulario. Primero, verifica si algún campo está vacío y establece un estado de error caso este vacio.
 Y mi objetoPaciente que hace una verificacion si el paciente actual tiene un ID (es decir, está en modo de edición), actualiza ese paciente en el estado de pacientes. Si no, agrega un nuevo paciente al estado pacientes.
 Por ultimo limpia los campos del formulario después de procesar el envío.
-Y dentro de mi formulario  {error && <Error><p>Todos los campos son obligatorios</p></Error>}  verifica que todos los campos sean completados si no muestra un mensaje de error.
+Y dentro de mi formulario {error && <Error><p>Todos los campos son obligatorios</p></Error>}  verifica que todos los campos sean completados si no muestra un mensaje de error.
 
      
