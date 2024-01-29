@@ -14,3 +14,4 @@ Y mi objetoPaciente que hace una verificacion si el paciente actual tiene un ID 
 Por ultimo limpia los campos del formulario después de procesar el envío.
 Y dentro de mi formulario {error && <Error><p>campos obligatorios</p></Error>} verifica que todos los campos sean completados si no muestra un mensaje de error.
      
+<h2>Deploy: https://lista-pacientes-navy.vercel.app/</h2>
